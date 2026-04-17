@@ -1,80 +1,97 @@
-# 🗂️ SAKXAMYDV — Python & C Projects
+#include<stdio.h>
 
-![Made by](https://img.shields.io/badge/Made%20by-SAKXAMYDV-purple) ![Year](https://img.shields.io/badge/Year-2025-gray) ![Level](https://img.shields.io/badge/Level-Beginner-green)
 
-A collection of beginner exercise projects exploring Python and C fundamentals — file handling, dictionaries, loops, and CLI interaction.
+int main(){
+    int class,sample;
+    char nme[30];
+    char *name;
+    name=&nme[30];
+    float GPA;
+    int n;
 
----
 
-## 📒 Project 1 — Contact Book (Python)
+printf("ENTER 1 TO WRITE 2 TO READ \t : ");
+scanf("%d",&n);
 
-![Python](https://img.shields.io/badge/Python-3.x-blue) ![Type](https://img.shields.io/badge/Type-CLI-purple)
+FILE *fp;
 
-A command-line contact book that lets you manage contacts stored in a dictionary during the session.
 
-### Features
-- **Add** one or multiple contacts at once
-- **View** all saved contacts in a list
-- **Search** for a contact by name
-- **Update** an existing contact's number
-- **Delete** a contact (with confirmation)
+switch (n)
+{
+case 1:
+    fp=fopen("studentsdata.txt","w");
 
-### Run
+    printf("TOTAL NUMBER OF STUDENTS \t");/*taking the number of students*/
+scanf("%d",&sample);
 
-```bash
-python contact_book.py
-```
 
-### Usage
+fprintf(fp,"%s","\n \t CLASS \t NAME \t GPA \t \n");/*formating*/
+for (int i = 0; i <sample; i++)
+{ 
+    printf("enter the name  student  \n");
+    scanf("%s",&nme[30]);
 
-| Input | Action |
-|-------|--------|
-| `1` | Add new contact(s) |
-| `2` | View all contacts |
-| `3` | Search for a contact |
-| `4` | Update a contact's number |
-| `5` | Delete a contact |
+    printf("enter the class of student \n");   /*USER INPUTS DATA*/
+    scanf("%d",&class);
 
-### Notes
-- Contacts are stored in memory and reset when the script exits.
-- Names are automatically uppercased for consistency.
-- To pre-load contacts, add them directly to the `contact = {}` dictionary in the script.
+    printf("enter the GPA of student \n");
+    scanf("%f",&GPA);
 
----
 
-## 🎓 Project 2 — Student Records Manager (C)
+    
+    
+fprintf(fp,"\t %d \t ",class); /*saving class */
 
-![C](https://img.shields.io/badge/Language-C-blue) ![Type](https://img.shields.io/badge/Type-File--IO-orange)
+fputs(name,fp);     /*saving name */
+fprintf(fp,"\t %f \t ",GPA);   /*saving gpa */
+fprintf(fp,"%s","\n");   /*SPACE OR BL*/
 
-A C program to write and read student records using file handling. Saves data to a `.txt` file that persists between runs.
+}
 
-### Features
-- **Write mode** — enter student details and save them to a `.txt` file
-- **Read mode** — retrieve and display all saved student records in the terminal
-- Data is saved to `studentsdata.txt` and persists between runs
 
-### Compile & Run
+fclose(fp);
 
-```bash
-gcc student_records.c -o student_records
-./student_records
-```
+/* closing the writting function*/
 
-### Usage
 
-| Input | Action |
-|-------|--------|
-| `1` | Write — add student records to file |
-| `2` | Read — display all saved records |
+ break;
 
-When writing, you'll be asked for each student's name, class, and GPA.
 
-### Notes
-- `studentsdata.txt` is created automatically on first write.
-- Running write mode again will overwrite the existing file.
 
----
 
-> These are exercise projects made for learning — not production-ready. Known bugs will be fixed as I learn more.
+/*for reading*/
+    case 2:
 
-*Made by SAKXAMYDV · 2025*
+fp=fopen("studentsdata.txt","r");
+
+char max[100]; /*to save those strings*/
+
+while(!feof(fp))
+{
+    fgets(max,100,fp); /* retriving data from file*/
+    puts(max);  /*printing in terminal*/
+}
+    break;
+  
+/*closing wriiting function*/
+
+
+    default:
+printf("choose from the given option \n");
+    break;
+}
+
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
